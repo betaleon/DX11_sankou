@@ -5,6 +5,7 @@
 #include "player.h"
 #include "input.h"
 #include "scene.h"
+#include "imgui.h"
 
 
 void CPlayer ::Init()

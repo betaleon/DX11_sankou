@@ -39,8 +39,6 @@ public:
 		AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(0.0f, 2.0f, 5.0f));
 		AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(5.0f, 2.0f, 5.0f));
 
-
-
 	}
 
 	virtual void Uninit()

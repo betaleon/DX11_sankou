@@ -6,6 +6,7 @@
 #include "scene.h"
 #include "debugimgui.h"
 #include "imgui.h"
+#include "player.h"
 
 CScene* CManager::m_Scene = nullptr;
 
@@ -55,12 +56,15 @@ void CManager::Draw()
 	CRenderer::SetLight(light);
 
 	m_Scene->Draw();
-
-	ImGui::Begin("test");
-	ImGui::Text("FUCK");
-	static float a = 0;
-	ImGui::DragFloat("a", &a, 0, 100);
+	
+	ImGui::Begin("Debug");
+	ImGui::Text("PlayerSize");
+	CPlayer* pPlayer = m_Scene->GetGameObject<CPlayer>(1);
+	static float a = 1.0f;
+	pPlayer->SetScale(D3DXVECTOR3(a, a, a));
+	ImGui::SliderFloat("a", &a, 0.0f, 2.0f);
 	ImGui::End();
+	
 
 	CDebugGui::End();
 	CRenderer::End();
