@@ -4,6 +4,8 @@
 #include "renderer.h"
 #include "input.h"
 #include "scene.h"
+#include "debugimgui.h"
+#include "imgui.h"
 
 CScene* CManager::m_Scene = nullptr;
 
@@ -11,6 +13,7 @@ void CManager::Init()
 {
 
 	CRenderer::Init();
+	CDebugGui::Initialize();
 	CInput::Init();
 
 	m_Scene = new CScene();
@@ -25,12 +28,14 @@ void CManager::Uninit()
 	delete m_Scene;
 
 	CInput::Uninit();
+	CDebugGui::Finalize();
 	CRenderer::Uninit();
 }
 
 void CManager::Update()
 {
 	CInput::Update();
+	CDebugGui::Update();
 
 	m_Scene->Update();
 }
@@ -39,6 +44,7 @@ void CManager::Draw()
 {
 
 	CRenderer::Begin();
+	CDebugGui::Begin();
 
 	LIGHT light;
 	light.Enable = true;
@@ -50,5 +56,12 @@ void CManager::Draw()
 
 	m_Scene->Draw();
 
+	ImGui::Begin("test");
+	ImGui::Text("FUCK");
+	static float a = 0;
+	ImGui::DragFloat("a", &a, 0, 100);
+	ImGui::End();
+
+	CDebugGui::End();
 	CRenderer::End();
 }

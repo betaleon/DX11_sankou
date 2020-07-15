@@ -3,8 +3,10 @@
 #include "renderer.h"
 #include "model.h"
 #include "bullet.h"
+#include "explosion.h"
 #include "input.h"
 #include "scene.h"
+
 
 CModel* CBullet::m_Model;
 
@@ -56,6 +58,8 @@ void CBullet::Update()
 
 		if (length < 1.5f)
 		{
+			scene->AddGameObject<CExplosion>(1)->SetPosition(m_Position);
+
 			enemy->SetDestroy();
 			SetDestroy();
 			return;

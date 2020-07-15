@@ -23,10 +23,9 @@ void CCamera::Update()
 void CCamera::Draw()
 {
 	//ビューマトリクス設定
-	D3DXMATRIX viewMatrix;
-	D3DXMatrixLookAtLH(&viewMatrix, &m_Position, &m_Target, &D3DXVECTOR3(0.0f, 1.0f, 0.0f));
+	D3DXMatrixLookAtLH(&m_viewMatrix, &m_Position, &m_Target, &D3DXVECTOR3(0.0f, 1.0f, 0.0f));
 
-	CRenderer::SetViewMatrix(&viewMatrix);
+	CRenderer::SetViewMatrix(&m_viewMatrix);
 
 	//プロジェクションマトリクス設定
 	D3DXMATRIX projectionMatrix;

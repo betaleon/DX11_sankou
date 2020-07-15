@@ -13,7 +13,7 @@ void CSkydome::Init()
 
 	m_Position = D3DXVECTOR3(0.0f, 2.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	m_Scale = D3DXVECTOR3(2000.0f, 2000.0f, 2000.0f);
+	m_Scale = D3DXVECTOR3(200.0f, 200.0f, 200.0f);
 
 }
 

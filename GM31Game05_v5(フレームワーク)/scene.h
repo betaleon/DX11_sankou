@@ -102,12 +102,16 @@ public:
 	template <typename T>
 	T* GetGameObject(int Layer)
 	{
-	
-		T* gameObject = new T();
-		m_GameObject[Layer].push_back(gameObject);
-		gameObject->Init();
 
+		for (CGameObject* object : m_GameObject[Layer]) {
+			//typeid=Œ^‚ğ’²‚×‚éŠÖ”,#include <typeinfo>•K—v
+			if (typeid(*object) == typeid(T))
+			{
+				return (T*)object;
+			}
+		}
 		return nullptr;
+
 	}
 
 	template <typename T>

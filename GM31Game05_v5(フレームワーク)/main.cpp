@@ -1,14 +1,14 @@
-
-
+#include "imgui.h"
+#include "imgui_impl_win32.h"
 #include "main.h"
 #include "manager.h"
-
 
 const char* CLASS_NAME = "AppClass";
 const char* WINDOW_NAME = "DX11ゲーム";
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+extern IMGUI_API LRESULT   ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 
 HWND g_Window;
@@ -58,12 +58,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	// 初期化処理(ウィンドウを作成してから行う)
 	CManager::Init();
 
-
 	// ウインドウの表示(初期化処理の後に行う)
 	ShowWindow(g_Window, nCmdShow);
 	UpdateWindow(g_Window);
-
-
 
 	//フレームカウント初期化
 	DWORD dwExecLastTime;
@@ -124,6 +121,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 //=============================================================================
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+		return true;
 
 	switch(uMsg)
 	{
