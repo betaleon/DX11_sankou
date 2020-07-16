@@ -10,7 +10,7 @@ class CDebugGui
 	static bool m_IsDebug;
 
 public:
-	static void Initialize();
+	static void Init();
 	static void Finalize();
 	static void Update();
 	static void Begin();

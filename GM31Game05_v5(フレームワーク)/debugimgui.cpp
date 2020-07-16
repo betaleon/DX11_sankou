@@ -7,7 +7,7 @@
 
 bool CDebugGui::m_IsDebug;
 
-void CDebugGui::Initialize()
+void CDebugGui::Init()
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();

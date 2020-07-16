@@ -14,7 +14,7 @@ void CManager::Init()
 {
 
 	CRenderer::Init();
-	CDebugGui::Initialize();
+	CDebugGui::Init();
 	CInput::Init();
 
 	m_Scene = new CScene();

@@ -2,6 +2,7 @@
 #include "main.h"
 #include "renderer.h"
 #include "field.h"
+//#include "scene.h"
 
 void CField::Init()
 {
@@ -102,3 +103,137 @@ void CField::Draw()
 	CRenderer::GetDeviceContext()->Draw(4, 0);
 
 }
+
+/*
+class CTerrain : public CGameObject //継承
+{
+
+private:
+
+	 static const int Num = 4;
+
+	 static double getTopLeft()		{	return 350.0;	}
+
+	 static double getTopRight()	{	return 120.0;	}
+
+	 static double getBottomLeft()	{	return 100.0;	}
+
+	 static double getBottomRight()	{	return 200.0;	}
+
+	 static double map[Num][Num] ;
+
+	 static void generateTerrainHelper(
+		 int leftIndex,
+		 int rightIndex,
+		 int topIndex,
+		 int bottomIndex,
+		 double map[Num][Num])
+	 {
+
+		 //4つの頂点の値を取得する
+		 double topLeftValue = map[topIndex][leftIndex];         //左上の頂点の値
+		 double topRightValue = map[topIndex][rightIndex];       //右上の頂点の値
+		 double bottomLeftValue = map[bottomIndex][leftIndex];   //左下の頂点の値
+		 double bottomRightValue = map[bottomIndex][rightIndex]; //右下の頂点の値
+
+		 //正方形の中心の値を設定する
+		 int centerXIndex = (leftIndex + rightIndex) / 2;
+		 int centerYIndex = (topIndex + bottomIndex) / 2;
+		 double centerValue = (topLeftValue + topRightValue + bottomLeftValue + bottomRightValue) / 4;
+
+		 map[centerYIndex][centerXIndex] = centerValue;
+
+		 //4辺の中心値を設定する
+		 //上辺中心
+		 double topSideValue = (topLeftValue + topRightValue) / 2.0;
+		 map[topIndex][centerXIndex] = topSideValue;
+
+		 //左辺中心
+		 double leftSideValue = (topLeftValue + bottomLeftValue) / 2.0;
+		 map[centerYIndex][leftIndex] = leftSideValue;
+
+		 //右辺中心
+		 double rightSideValue = (topRightValue + bottomRightValue) / 2.0;
+		 map[centerYIndex][rightIndex] = rightSideValue;
+
+		 //下辺中心
+		 double bottomSideValue = (bottomLeftValue + bottomRightValue) / 2.0;
+		 map[bottomIndex][centerXIndex] = bottomSideValue;
+
+
+		 //現在の四角形の大きさを取得する
+		 int squareSize = rightIndex - leftIndex;
+
+		 //一回り小さい四角形の一辺の長さを取得する
+		 int innerSquareSize = squareSize / 2;
+
+		 //もし一回り小さい四角形の大きさが1（点4つからなる四角形）なら、処理を中断する
+		 if (innerSquareSize <= 1) { return; }
+
+		 //現在処理している四角形より
+		 //一回り小さい4つの四角形に対して、同様の処理を行う
+		 for (int x = 0; x < 2; x++)
+		 {
+			 for (int y = 0; y < 2; y++)
+			 {
+				 int innerLeftIndex = leftIndex + innerSquareSize * x;
+				 int innerRightIndex = leftIndex + innerSquareSize * (x + 1);
+				 int innerTopIndex = topIndex + innerSquareSize * y;
+				 int innerBottomIndex = topIndex + innerSquareSize * (y + 1);
+				 generateTerrainHelper
+				 (innerLeftIndex,
+					 innerRightIndex,
+					 innerTopIndex,
+					 innerBottomIndex,
+					 map);
+			 }
+		 }
+
+	 }
+
+public:
+	CTerrain(){}
+	~CTerrain(){}
+
+	 static double generateTerrain(	
+		double topLeftValue,
+		double topRightValue,
+		double bottomLeftValue,
+		double bottomRightValue,
+		int length) 
+	 {
+		 CTerrain* terrain = new CTerrain();
+		Num = length;
+		//length*lengthの2次元配列を生成する
+		double map = new double[length][length];
+
+		//4つの頂点の値を設定する
+		map[0][0] = topLeftValue;
+		map[0][length - 1] = topRightValue;
+		map[length - 1][0] = bottomLeftValue;
+		map[length - 1][length - 1] = bottomRightValue;
+
+		//再帰処理により、各点の値を求める
+		generateTerrainHelper(0, length - 1, 0, length - 1, map);
+
+		return map;
+	}
+
+	 static void Generate()
+	 {
+
+		 //生成
+		 double map[Num][Num] = generateTerrain(
+			 getTopLeft(),
+			 getTopRight(),
+			 getBottomLeft(),
+			 getBottomRight(),
+			 5);
+
+	 }
+
+
+	
+
+};
+*/
