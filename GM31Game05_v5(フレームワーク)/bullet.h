@@ -8,6 +8,7 @@ class CBullet : public CGameObject //Œp³(ƒCƒ“ƒwƒŠƒ^ƒ“ƒX)
 private:
 
 	static class CModel* m_Model;
+	D3DXVECTOR3 m_Forward;
 
 public:
 	CBullet() {}

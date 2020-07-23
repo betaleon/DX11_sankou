@@ -5,12 +5,14 @@ class CCamera:public CGameObject
 {
 
 private:
-	D3DXVECTOR3 m_Target;
+	D3DXVECTOR3 m_Target;	//íçéãì_
+
 	D3DXMATRIX m_viewMatrix;
+	D3DXMATRIX m_ProjectionMatrix;
 
 public:
-	CCamera(){}
-	~CCamera(){}
+	//CCamera(){}
+	//~CCamera(){}
 	void Init();
 	void Uninit();
 	void Update();

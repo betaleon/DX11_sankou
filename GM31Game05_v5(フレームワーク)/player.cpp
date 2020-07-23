@@ -29,7 +29,21 @@ void CPlayer::Uninit()
 
 void CPlayer::Update()
 {
+	if (CInput::GetKeyPress('A'))
+		m_Rotation.y -= 0.05f;
 
+	if (CInput::GetKeyPress('D'))
+		m_Rotation.y += 0.05f;
+
+	D3DXVECTOR3 forward = GetForward();//前方向ベクトル
+
+	if (CInput::GetKeyPress('W'))
+		m_Position += forward * 0.1f;
+
+	if (CInput::GetKeyPress('S'))
+		m_Position -= forward * 0.1f;
+
+	/*
 	if (CInput::GetKeyPress('A'))	//VK_SHIFTでSHIFTに対応　VK_SHIFTの定義に移動で大体キーコードわかる
 	{
 		m_Position.x -= 0.1f;
@@ -49,6 +63,7 @@ void CPlayer::Update()
 	{
 		m_Position.z += 0.1f;
 	}
+	*/
 
 	if (CInput::GetKeyTrigger(VK_SPACE))
 	{

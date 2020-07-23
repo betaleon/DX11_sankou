@@ -6,6 +6,7 @@
 
 void CField::Init()
 {
+	
 	VERTEX_3D vertex[4];
 
 	vertex[0].Position	= D3DXVECTOR3(-10.0f, 0.0f, 10.0f);
@@ -27,6 +28,17 @@ void CField::Init()
 	vertex[3].Normal	= D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[3].Diffuse	= D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[3].TexCoord	= D3DXVECTOR2(50.0f, 50.0f);
+	
+//static const int Num = 64;
+//VERTEX_3D vertex[Num];
+//for (int i = 0; i++; i > Num)
+//{
+//	vertex[i].Position = D3DXVECTOR3(10.0f, 0.0f, 10.0f);
+//	vertex[i].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+//	vertex[i].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+//	vertex[i].TexCoord = D3DXVECTOR2(50.0f, 0.0f);
+//};
+
 
 	//頂点バッファ生成
 	D3D11_BUFFER_DESC bd;
