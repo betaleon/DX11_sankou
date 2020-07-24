@@ -11,9 +11,9 @@
 void CPlayer ::Init()
 {
 	m_Model = new CModel();
-	m_Model->Load("asset\\model\\horse_v3.obj");
+	m_Model->Load("asset\\model\\horse_v5.obj");
 
-	m_Position = D3DXVECTOR3(0.0f, 2.0f, 0.0f);
+	m_Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 
@@ -68,7 +68,7 @@ void CPlayer::Update()
 	if (CInput::GetKeyTrigger(VK_SPACE))
 	{
 		CScene* scene = CManager::GetScene();
-		scene->AddGameObject<CBullet>(1)->SetPosition(m_Position);
+		scene->AddGameObject<CBullet>(1)->SetPosition(D3DXVECTOR3(m_Position.x,m_Position.y+2.0f,m_Position.z));
 	}
 
 }
