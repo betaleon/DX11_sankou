@@ -6,7 +6,10 @@
 #include "scene.h"
 #include "debugimgui.h"
 #include "imgui.h"
+#include "model.h"
 #include "player.h"
+#include "game.h"
+#include "title.h"
 
 CScene* CManager::m_Scene = nullptr;
 
@@ -17,8 +20,11 @@ void CManager::Init()
 	CDebugGui::Init();
 	CInput::Init();
 
-	m_Scene = new CScene();
-	m_Scene->Init();
+	//m_Scene = new CScene();
+	//m_Scene = new CGame();
+	//m_Scene->Init();
+
+	SetScene<CTitle>();
 
 }
 
@@ -48,7 +54,7 @@ void CManager::Draw()
 	CDebugGui::Begin();
 
 	LIGHT light;
-	light.Enable = true;
+	light.Enable = false;
 	light.Direction = D3DXVECTOR4(1.0f, -1.0f, 1.0f, 0.0f);
 	D3DXVec4Normalize(&light.Direction, &light.Direction);
 	light.Ambient = D3DXCOLOR(0.1f, 0.1f, 0.1f, 1.0f);
@@ -57,13 +63,13 @@ void CManager::Draw()
 
 	m_Scene->Draw();
 	
-	ImGui::Begin("Debug");
-	ImGui::Text("PlayerSize");
-	CPlayer* pPlayer = m_Scene->GetGameObject<CPlayer>(1);
-	static float a = 1.0f;
-	pPlayer->SetScale(D3DXVECTOR3(a, a, a));
-	ImGui::SliderFloat("a", &a, 0.0f, 2.0f);
-	ImGui::End();
+	//ImGui::Begin("Debug");
+	//ImGui::Text("PlayerSize");
+	//CPlayer* pPlayer = m_Scene->GetGameObject<CPlayer>(1);
+	//static float a = 1.0f;
+	//pPlayer->SetScale(D3DXVECTOR3(a, a, a));
+	//ImGui::SliderFloat("a", &a, 0.0f, 2.0f);
+	//ImGui::End();
 	
 
 	CDebugGui::End();

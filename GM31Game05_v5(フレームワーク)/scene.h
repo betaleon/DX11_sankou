@@ -4,14 +4,6 @@
 #include <typeinfo>
 #include "main.h"
 #include "game_object.h"
-#include "camera.h"
-#include "field.h"
-#include "skydome.h"
-#include "model.h"
-#include "player.h"
-#include "polygon.h"
-#include "enemy.h"
-#include "bullet.h"
 
 class CScene
 {
@@ -23,23 +15,7 @@ public:
 	CScene(){}
 	virtual ~CScene(){}
 
-	virtual void Init()
-	{
-		CBullet::Load();
-
-		AddGameObject<CCamera>(0);
-		
-		AddGameObject<CField>(1);
-		AddGameObject<CSkydome>(1);
-		AddGameObject<CPlayer>(1);
-
-		//AddGameObject<CPolygon>(2);
-
-		AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(-5.0f, 2.0f, 5.0f));
-		AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(0.0f, 2.0f, 5.0f));
-		AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(5.0f, 2.0f, 5.0f));
-
-	}
+	virtual void Init() = 0;			//純粋仮想関数
 
 	virtual void Uninit()
 	{
@@ -52,7 +28,6 @@ public:
 			}
 			m_GameObject[i].clear();	//リストのクリア
 		}
-		CBullet::Unload();
 	}
 
 	virtual void Update()
@@ -61,14 +36,11 @@ public:
 		{
 			for (CGameObject* object : m_GameObject[i])
 			{
-				object->Update();	//多態性（ポリモーフィズム）
+				object->Update();		//多態性（ポリモーフィズム）
 			}
-
 			//listから条件に当てはまる要素だけ削除する
 			m_GameObject[i].remove_if([](CGameObject* object) { return object->Destroy(); });	//ラムダ式
 		}
-
-
 	}
 
 	virtual void Draw()

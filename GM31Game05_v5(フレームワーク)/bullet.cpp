@@ -1,11 +1,13 @@
 #include "main.h"
 #include "manager.h"
 #include "renderer.h"
-#include "model.h"
 #include "bullet.h"
 #include "explosion.h"
 #include "input.h"
 #include "scene.h"
+#include "model.h"
+#include "player.h"
+#include "enemy.h"
 
 
 CModel* CBullet::m_Model;

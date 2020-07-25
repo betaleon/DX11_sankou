@@ -12,6 +12,7 @@ private:
 	int m_Count;
 public:
 
+
 	void Init();
 	void Uninit();
 	void Update();

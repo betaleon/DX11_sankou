@@ -6,7 +6,7 @@
 #include "input.h"
 #include "scene.h"
 #include "imgui.h"
-
+#include "bullet.h"
 
 void CPlayer ::Init()
 {
