@@ -40,8 +40,49 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	// ウィンドウクラスの登録
 	RegisterClassEx(&wcex);
 
+	//ウィンドウスタイル（見た目）の設定
+	DWORD window_style;
+	if (FULLSCREEN) window_style = WS_EX_TOPMOST | WS_POPUP;
+	else		   window_style = WS_OVERLAPPEDWINDOW;
+
+
+	//基本矩形座標
+	RECT window_rect = { 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };
+
+	//指定したクライアント領域に合わせて矩形を調整
+	AdjustWindowRect(&window_rect, window_style, FALSE);
+
+	//ウィンドウの矩形座標から幅と高さを計算
+	int window_width = window_rect.right - window_rect.left;
+	int window_height = window_rect.bottom - window_rect.top;
+
+	//ディスプレイの解像度の取得
+	int desktop_width = GetSystemMetrics(SM_CXSCREEN);
+	int desktop_height = GetSystemMetrics(SM_CYSCREEN);
+
+	//画面の中にウィンドウを表示するよう座標計算
+	//ただし画面より大きいウィンドウは左上に合わせて表示
+	int window_x = max((desktop_width - window_width) / 2, 0);
+	int window_y = max((desktop_height - window_height) / 2, 0);
+
 	// ウィンドウの作成
-	g_Window = CreateWindowEx(0,
+	g_Window = CreateWindowEx(
+		0,
+		CLASS_NAME,
+		WINDOW_NAME,
+		window_style,
+		window_x,
+		window_y,
+		window_width,
+		window_height,
+		NULL,
+		NULL,
+		hInstance,
+		NULL
+	);
+
+	/*g_Window = CreateWindowEx(
+		0,
 		CLASS_NAME,
 		WINDOW_NAME,
 		WS_OVERLAPPEDWINDOW,
@@ -52,7 +93,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		NULL,
 		NULL,
 		hInstance,
-		NULL);
+		NULL
+	);*/
 
 
 	// 初期化処理(ウィンドウを作成してから行う)

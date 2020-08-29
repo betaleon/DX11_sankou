@@ -4,10 +4,11 @@
 #include "renderer.h"
 #include "title.h"
 #include "game.h"
+#include "polygon.h"
 
 void CTitle::Init()
 {
-
+	AddGameObject<CPolygon>(2);
 }
 
 void CTitle::Update()
@@ -20,3 +21,4 @@ void CTitle::Update()
 	}
 
 }
+
