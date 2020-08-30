@@ -41,7 +41,7 @@ void CCamera::Draw()
 	CRenderer::SetViewMatrix(&m_viewMatrix);
 
 	//プロジェクションマトリクス設定
-	D3DXMatrixPerspectiveFovLH(&m_ProjectionMatrix, 1.5f, (float)SCREEN_WIDTH / SCREEN_HEIGHT, 1.0f, 1000.0f);
+	D3DXMatrixPerspectiveFovLH(&m_ProjectionMatrix, 1.5f, (float)SCREEN_WIDTH / SCREEN_HEIGHT, 1.0f, 5000.0f);
 
 	CRenderer::SetProjectionMatrix(&m_ProjectionMatrix);
 }

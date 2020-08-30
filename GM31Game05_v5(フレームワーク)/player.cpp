@@ -34,10 +34,11 @@ void CPlayer::Uninit()
 void CPlayer::Update()
 {
 
-	auto a = typeid(*CManager::GetScene()).name();
+	//auto a = typeid(*CManager::GetScene()).name();
 	if ( typeid(*CManager::GetScene()).hash_code() == typeid(CTitle).hash_code())
 	{
 		m_Position = D3DXVECTOR3(0.0f, 10.0f, 0.0f);
+		m_Scale = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		m_Rotation.y -= 0.005f;
 	}
 	else
@@ -51,10 +52,10 @@ void CPlayer::Update()
 		D3DXVECTOR3 forward = GetForward();//前方向ベクトル
 
 		if (CInput::GetKeyPress('W'))
-			m_Position += forward * 0.1f;
+			m_Position += forward * 1.0f;
 
 		if (CInput::GetKeyPress('S'))
-			m_Position -= forward * 0.1f;
+			m_Position -= forward * 1.0f;
 	}
 
 

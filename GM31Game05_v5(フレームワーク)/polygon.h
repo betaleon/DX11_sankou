@@ -4,23 +4,14 @@
 
 // globals
 #define TEXTURE_FILENAME_MAX (64)
-/*
-typedef enum TextureIndex
-{
-	TEXTURE_TITLE_LOGO_3,
-	TEXTURE_TITLE_LOGO_2,
-	TEXTURE_TITLE_LOGO_1,
-
-	TEXTURE_INDEX_MAX
-
-};
-*/
 // texture data struct
 typedef struct TextureFile_tag
 {
 	char filename[TEXTURE_FILENAME_MAX];  // path to the texture
 	int width;  // width of texture
 	int height; // height of texture
+	int posx;	//pos x
+	int posy;	//pos y
 } TextureFile;
 
 
@@ -33,6 +24,7 @@ private:
 
 public:
 	VERTEX_3D m_vertex[4];
+	int m_posx, m_posy;
 	CPolygon(){}
 	~CPolygon() {}
 	void Init();
@@ -40,7 +32,7 @@ public:
 	void Update();
 	void Draw();
 
-	void SetTexture(const char *filename , int width, int height);
-
+	void SetTexture(const char *filename , int width, int height,int posx,int posy);
+	void SetTransform(int width, int height,int posx,int posy);
 };
 
