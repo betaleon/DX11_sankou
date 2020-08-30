@@ -24,7 +24,7 @@ public:
 			for (CGameObject* object : m_GameObject[i])
 			{
 				object->Uninit();
-				delete object;
+				if(object != nullptr)delete object;
 			}
 			m_GameObject[i].clear();	//リストのクリア
 		}

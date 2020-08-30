@@ -5,11 +5,24 @@
 #define BASE_X (SCREEN_WIDTH / 2)
 #define BASE_Y (SCREEN_HEIGHT/ 2)
 
-#define POSITION_X -340
-#define POSITION_Y +175
+#define POSITION_X 0
+#define POSITION_Y 0
 
-#define SCALE_X 300.0f
-#define SCALE_Y 200.0f
+#define SCALE_X 1500.0f
+#define SCALE_Y 1000.0f
+
+// texture file count
+//static const int TEXTURE_FILE_COUNT = sizeof(g_TextureFiles) / sizeof(g_TextureFiles[0]);
+// static const int TEXTURE_FILE_COUNT = ARRAYSIZE(g_TextureFiles); // required Windows.h
+
+// check if texture enum length == texture file count
+//static_assert(TEXTURE_INDEX_MAX == TEXTURE_FILE_COUNT, "TEXTURE_INDEX_MAX != TEXTURE_FILE_COUNT");
+
+
+
+// stores texture data
+//static LPDIRECT3DTEXTURE9 g_pTextures[TEXTURE_FILE_COUNT] = {};
+
 
 void CPolygon::Init()
 {
@@ -48,22 +61,14 @@ void CPolygon::Init()
 	sd.pSysMem = vertex;
 
 	CRenderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
-
-	//テクスチャ読み込み
-	D3DX11CreateShaderResourceViewFromFile(	CRenderer::GetDevice(),
-											"asset/texture/gta6.png",
-											NULL,
-											NULL,
-											&m_Texture,
-											NULL);
-
 }
 
 void CPolygon::Uninit()
 {
 
 	m_VertexBuffer->Release();
-	m_Texture->Release();
+	if(m_Texture!=nullptr)
+		m_Texture->Release();
 
 }
 
@@ -85,7 +90,6 @@ void CPolygon::Draw()
 	UINT stride = sizeof(VERTEX_3D);
 	UINT offset = 0;
 	CRenderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
-
 	//マテリアル設定
 	MATERIAL material;
 	ZeroMemory(&material, sizeof(material));
@@ -101,4 +105,15 @@ void CPolygon::Draw()
 	//ポリゴン描画
 	CRenderer::GetDeviceContext()->Draw(4, 0);
 
+}
+
+void CPolygon::SetTexture(const char * filename, int width, int height)
+{
+	//テクスチャ読み込み
+	D3DX11CreateShaderResourceViewFromFile(CRenderer::GetDevice(),
+		filename,
+		NULL,
+		NULL,
+		&m_Texture,
+		NULL);
 }

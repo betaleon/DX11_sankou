@@ -7,6 +7,9 @@
 #include "scene.h"
 #include "imgui.h"
 #include "bullet.h"
+#include "manager.h"
+#include "title.h"
+//#include <typeinfo>
 
 void CPlayer ::Init()
 {
@@ -29,6 +32,7 @@ void CPlayer::Uninit()
 
 void CPlayer::Update()
 {
+
 	if (CInput::GetKeyPress('A'))
 		m_Rotation.y -= 0.05f;
 
@@ -42,6 +46,7 @@ void CPlayer::Update()
 
 	if (CInput::GetKeyPress('S'))
 		m_Position -= forward * 0.1f;
+
 
 	/*
 	if (CInput::GetKeyPress('A'))	//VK_SHIFTでSHIFTに対応　VK_SHIFTの定義に移動で大体キーコードわかる

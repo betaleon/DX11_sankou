@@ -4,6 +4,8 @@
 
 class CTitle : public CScene
 {
+private:
+//	CPolygon* m_Polygon;
 
 public:
 	void Init();
