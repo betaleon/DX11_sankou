@@ -25,7 +25,7 @@
 
 
 void CPolygon::Init()
-{
+{/*
 	VERTEX_3D vertex[4];
 
 	vertex[0].Position = D3DXVECTOR3(BASE_X - SCALE_X/2+POSITION_X, BASE_Y - SCALE_Y/2+ POSITION_Y, 0.0f);
@@ -61,12 +61,13 @@ void CPolygon::Init()
 	sd.pSysMem = vertex;
 
 	CRenderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
+	*/
 }
 
 void CPolygon::Uninit()
 {
-
-	m_VertexBuffer->Release();
+	if(m_VertexBuffer != nullptr)
+		m_VertexBuffer->Release();
 	if(m_Texture!=nullptr)
 		m_Texture->Release();
 
@@ -109,6 +110,41 @@ void CPolygon::Draw()
 
 void CPolygon::SetTexture(const char * filename, int width, int height)
 {
+	//VERTEX_3D m_vertex[4];
+
+	m_vertex[0].Position = D3DXVECTOR3(BASE_X - width / 2 + POSITION_X, BASE_Y - height / 2 + POSITION_Y, 0.0f);
+	m_vertex[0].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertex[0].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
+	
+	m_vertex[1].Position = D3DXVECTOR3(BASE_X + width / 2 + POSITION_X, BASE_Y - height / 2 + POSITION_Y, 0.0f);
+	m_vertex[1].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertex[1].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
+	
+	m_vertex[2].Position = D3DXVECTOR3(BASE_X - width / 2 + POSITION_X, BASE_Y + height / 2 + POSITION_Y, 0.0f);
+	m_vertex[2].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertex[2].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
+	
+	m_vertex[3].Position = D3DXVECTOR3(BASE_X + width / 2 + POSITION_X, BASE_Y + height / 2 + POSITION_Y, 0.0f);
+	m_vertex[3].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
+
+	//頂点バッファ生成
+	D3D11_BUFFER_DESC bd;
+	ZeroMemory(&bd, sizeof(bd));
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	bd.ByteWidth = sizeof(VERTEX_3D) * 4;
+	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	bd.CPUAccessFlags = 0;
+
+	D3D11_SUBRESOURCE_DATA sd;
+	ZeroMemory(&sd, sizeof(sd));
+	sd.pSysMem = m_vertex;
+
+	CRenderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 	//テクスチャ読み込み
 	D3DX11CreateShaderResourceViewFromFile(CRenderer::GetDevice(),
 		filename,

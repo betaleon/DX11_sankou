@@ -32,6 +32,7 @@ private:
 	ID3D11ShaderResourceView*	m_Texture = NULL;
 
 public:
+	VERTEX_3D m_vertex[4];
 	CPolygon(){}
 	~CPolygon() {}
 	void Init();

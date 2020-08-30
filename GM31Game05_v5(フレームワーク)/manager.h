@@ -30,4 +30,10 @@ public:
 		m_Scene = scene;
 
 	}
+
+	//template <typename T>
+	//static T* GetScene()
+	//{
+	//	return m_Scene;
+	//}
 };

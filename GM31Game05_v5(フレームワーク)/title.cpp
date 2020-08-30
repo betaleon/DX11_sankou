@@ -9,7 +9,8 @@
 #include "game.h"
 #include "polygon.h"
 #include "player.h"
-CPlayer* player;
+class CPolygon* polygon;
+
 void CTitle::Init()
 {
 
@@ -17,7 +18,7 @@ void CTitle::Init()
 
 	AddGameObject<CField>(1);
 	AddGameObject<CSkydome>(1);
-	player = AddGameObject<CPlayer>(1);
+	AddGameObject<CPlayer>(1);
 
 	// texture path
 	TextureFile TextureFilesTitle[] = {
@@ -31,7 +32,7 @@ void CTitle::Init()
 		i < sizeof(TextureFilesTitle) / sizeof(TextureFilesTitle[0]);
 		i++)
 	{
-		auto polygon = AddGameObject<CPolygon>(2);
+		polygon = AddGameObject<CPolygon>(2);
 		polygon->SetTexture(TextureFilesTitle[i].filename, 
 			TextureFilesTitle[i].width, 
 			TextureFilesTitle[i].height);
@@ -51,6 +52,7 @@ void CTitle::Update()
 	{
 		CManager::SetScene<CGame>();
 	}
+
 
 }
 
