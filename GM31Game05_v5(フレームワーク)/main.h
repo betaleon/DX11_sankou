@@ -23,7 +23,7 @@
 #pragma comment (lib, "d3dx9.lib")
 #pragma comment (lib, "d3dx11.lib")
 
-#define FULLSCREEN	TRUE
+#define FULLSCREEN	FALSE
 #define SCREEN_WIDTH	(1920)			// ウインドウの幅
 #define SCREEN_HEIGHT	(1080)			// ウインドウの高さ
 
