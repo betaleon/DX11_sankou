@@ -64,7 +64,7 @@ void CManager::Draw()
 	m_Scene->Draw();
 	
 	ImGui::Begin("Debug");
-
+	
 	CPlayer* pPlayer = m_Scene->GetGameObject<CPlayer>(1);
 	if (pPlayer != NULL)
 	{
@@ -73,7 +73,7 @@ void CManager::Draw()
 		pPlayer->SetScale(D3DXVECTOR3(a, a, a));
 		ImGui::SliderFloat("a", &a, 0.0f, 2.0f);
 	}
-
+	
 	ImGui::End();
 	
 

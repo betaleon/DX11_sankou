@@ -1,3 +1,4 @@
+
 #include "main.h"
 #include "manager.h"
 #include "renderer.h"
@@ -6,9 +7,11 @@
 #include "input.h"
 #include "scene.h"
 #include "imgui.h"
+#include "score.h"
 #include "bullet.h"
 #include "manager.h"
 #include "title.h"
+#include "enemy.h"
 #include <typeinfo>
 #include <string.h>
 
@@ -20,7 +23,9 @@ void CPlayer ::Init()
 	m_Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+	D3DXQuaternionIdentity(&m_Quaternion);
 
+	 m_Walkcount = 0;
 }
 
 void CPlayer::Uninit()
@@ -44,18 +49,69 @@ void CPlayer::Update()
 	else
 	{
 		if (CInput::GetKeyPress('A'))
+		{
 			m_Rotation.y -= 0.05f;
-
+			D3DXQUATERNION quat;
+			D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXToRadian(-1.0F));
+			m_Quaternion *= quat;
+		}
 		if (CInput::GetKeyPress('D'))
+		{
 			m_Rotation.y += 0.05f;
+			D3DXQUATERNION quat;
+			D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXToRadian(-1.0F));
+			m_Quaternion *= quat;
+		}
 
 		D3DXVECTOR3 forward = GetForward();//前方向ベクトル
 
 		if (CInput::GetKeyPress('W'))
-			m_Position += forward * 1.0f;
+		{
+			m_Walkcount++;
+			if (m_Walkcount == 10)
+			{
+				m_Position += forward * 3.0f;
+				D3DXQUATERNION quat;
+				D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(-1.0f, 0.0f, 0.0f), D3DXToRadian(-90.0F));
+				m_Quaternion *= quat;
+				m_Walkcount = 0;
+			}
+		}
 
 		if (CInput::GetKeyPress('S'))
-			m_Position -= forward * 1.0f;
+		{
+			m_Walkcount++;
+			if (m_Walkcount == 10)
+			{
+				m_Position -= forward * 3.0f;
+				D3DXQUATERNION quat;
+				D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(-1.0f, 0.0f, 0.0f), D3DXToRadian(90.0F));
+				m_Quaternion *= quat;
+				m_Walkcount = 0;
+			}
+		}
+		CScore* score = CManager::GetScene()->GetGameObject<CScore>(2);
+
+		CScene* scene = CManager::GetScene();
+
+		std::vector<CEnemy*> enemyList = scene->GetGameObjects<CEnemy>(1);
+
+		for (CEnemy* enemy : enemyList)
+		{
+			D3DXVECTOR3 enemyPosition = enemy->GetPosition();
+
+			D3DXVECTOR3 direction = m_Position - enemyPosition;
+			float length = D3DXVec3Length(&direction);
+
+			if (length < 3.0f)
+			{
+				//scene->AddGameObject<CPlayer>(1)->SetPosition(m_Position);
+				score->AddScore(100);
+				enemy->SetDestroy();
+				//SetDestroy();
+				//return;
+			}
+		}
 	}
 
 
@@ -95,6 +151,7 @@ void CPlayer::Draw()
 	D3DXMATRIX world, scale, rot, trans;
 	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
 	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
+	D3DXMatrixRotationQuaternion(&rot, &m_Quaternion);
 	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
 	world = scale * rot * trans;
 

@@ -10,6 +10,7 @@
 #include "model.h"
 #include "player.h"
 #include "polygon.h"
+#include "score.h"
 #include "enemy.h"
 #include "bullet.h"
 #include "explosion.h"
@@ -27,12 +28,14 @@ void CGame::Init()
 	AddGameObject<CSkydome>(1);
 	AddGameObject<CPlayer>(1);
 
-	AddGameObject<CPolygon>(2);
+	//AddGameObject<CPolygon>(2);
+	for (int i = 0; i < 100; i++)
+	{
+		AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(rand()%500-300.0f, 2.0f, rand()%500-300.0f));
+	}
 
-	AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(-5.0f, 2.0f, 5.0f));
-	AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(0.0f, 2.0f, 5.0f));
-	AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(5.0f, 2.0f, 5.0f));
 
+	AddGameObject<CScore>(2);
 }
 
 void CGame::Uninit()

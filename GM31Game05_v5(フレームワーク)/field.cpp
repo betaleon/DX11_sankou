@@ -8,16 +8,28 @@
 #define TILE_HEIGHT 10.0f
 #define TILE_X 100
 #define TILE_Z 100
+
 VERTEX_3D pVtx_B[(TILE_X + 1) *(TILE_Z + 1)];
 unsigned int pIdx[((4 + (TILE_X - 1) * 2)*TILE_Z + 2 * (TILE_Z - 1))];
 
 void	diamondSquare(int Array[TILE_X+1][TILE_Z+1], int size);
 void	squareStep(int Array[TILE_X+1][TILE_Z+1], int x, int z, int reach);
-void	diamondStep(int Array[TILE_X+1][TILE_Z+1], int x, int z, int reach);
-float	random(int range);
+void	diamondStep(int  Array[TILE_X+1][TILE_Z+1], int x, int z, int reach);
+float		random(int range);
+
+CField::CField()
+{
+
+}
+
+CField::~CField()
+{
+	OutputDebugStringA("FIELD DESTOROYED\n");
+}
 
 void CField::Init()
 {
+
 	int Array[TILE_X+1][TILE_Z+1] = {};
 	diamondSquare(Array,TILE_X);
 	for (int i = 0, k = 0; i <= TILE_Z; i++)
@@ -84,7 +96,7 @@ void CField::Init()
 
 	ZeroMemory(&sd, sizeof(sd));
 	sd.pSysMem = pIdx;
-
+	//if(m_IndexBuffer!=NULL)
 	CRenderer::GetDevice()->CreateBuffer(&bd, &sd, &m_IndexBuffer);
 
 	//テクスチャ読み込み
@@ -97,10 +109,9 @@ void CField::Init()
 
 	assert(m_Texture);
 
-	m_Position	= D3DXVECTOR3(0.0f, -10.0f, 0.0f);
-	m_Rotation	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_Scale		= D3DXVECTOR3(5.0f, 1.0f, 5.0f);
-
+	m_Position = D3DXVECTOR3(0.0f, -10.0f, 0.0f);
+	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_Scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 }
 
 void CField::Uninit()

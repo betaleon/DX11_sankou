@@ -343,7 +343,8 @@ void CRenderer::Begin()
 
 void CRenderer::End()
 {
-	m_SwapChain->Present( 1, 0 );
+
+	HRESULT hr = m_SwapChain->Present( 1, 0 );
 }
 
 

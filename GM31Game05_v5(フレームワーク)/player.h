@@ -9,6 +9,8 @@ private:
 
 	CModel* m_Model;
 
+	D3DXQUATERNION m_Quaternion;
+	int m_Walkcount;
 public:
 	CPlayer(){}
 	~CPlayer(){}

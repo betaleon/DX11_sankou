@@ -13,7 +13,6 @@ private:
 	int m_Score;
 	int m_FinalScore;
 public:
-
 	void Init();
 	void Uninit();
 	void Update();
