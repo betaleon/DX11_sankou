@@ -9,6 +9,7 @@
 #include "game.h"
 #include "polygon.h"
 #include "player.h"
+#include "fade.h"
 
 int g_TitlePosX=0,g_TitlePosY=0;
 float RadForTitle = 0,RadForTitle2 = 0;
@@ -59,16 +60,24 @@ void CTitle::Init()
 		
 	}
 
-
-
+	AddGameObject<CFade>(2);
 	
 }
 
 void CTitle::Update()
 {
 	CScene::Update();
+	CFade* pFade = GetGameObject<CFade>(2);
+
+	//pFade->GetFadeOutFlg();
 
 	if (CInput::GetKeyTrigger(VK_SPACE))
+	{
+		pFade->SetFadeOut();
+		//CManager::SetScene<CGame>();
+	}
+
+	if (pFade->GetSceneChangeFlg() == TRUE)
 	{
 		CManager::SetScene<CGame>();
 	}

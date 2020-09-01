@@ -4,6 +4,7 @@
 #include "input.h"
 #include "game.h"
 #include "title.h"
+#include "result.h"
 #include "camera.h"
 #include "field.h"
 #include "skydome.h"
@@ -14,6 +15,7 @@
 #include "enemy.h"
 #include "bullet.h"
 #include "explosion.h"
+#include "fade.h"
 
 
 void CGame::Init()
@@ -36,6 +38,8 @@ void CGame::Init()
 
 
 	AddGameObject<CScore>(2);
+	AddGameObject<CFade>(2);
+
 }
 
 void CGame::Uninit()
@@ -49,11 +53,17 @@ void CGame::Uninit()
 void CGame::Update()
 {
 	CScene::Update();
+	CFade* pFade = GetGameObject<CFade>(2);
 
 	if (CInput::GetKeyTrigger(VK_RETURN))
 	{
-		CManager::SetScene<CTitle>();
+		pFade->SetFadeOut();
+		//CManager::SetScene<CResult>();
 	}
 
+	if (pFade->GetSceneChangeFlg() == TRUE)
+	{
+		CManager::SetScene<CResult>();
+	}
 
 }

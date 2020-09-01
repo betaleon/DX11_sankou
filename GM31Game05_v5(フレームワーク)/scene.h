@@ -27,16 +27,6 @@ public:
 				if(object != nullptr)delete object;
 			
 			}
-			//for (auto temp = m_GameObject[i].end(); temp != m_GameObject[i].begin(); temp--)
-			//{
-			//	(*temp)->Uninit();
-			//	if ((*temp) != nullptr)
-			//	{
-			//		m_GameObject[i].erase(temp);
-			//	}
-			//}
-
-
 			m_GameObject[i].clear();	//リストのクリア
 		}
 	}

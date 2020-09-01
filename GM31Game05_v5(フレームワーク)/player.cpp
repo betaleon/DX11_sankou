@@ -137,11 +137,11 @@ void CPlayer::Update()
 	}
 	*/
 
-	if (CInput::GetKeyTrigger(VK_SPACE))
-	{
-		CScene* scene = CManager::GetScene();
-		scene->AddGameObject<CBullet>(1)->SetPosition(D3DXVECTOR3(m_Position.x,m_Position.y+2.0f,m_Position.z));
-	}
+	//if (CInput::GetKeyTrigger(VK_SPACE))
+	//{
+	//	CScene* scene = CManager::GetScene();
+	//	scene->AddGameObject<CBullet>(1)->SetPosition(D3DXVECTOR3(m_Position.x,m_Position.y+2.0f,m_Position.z));
+	//}
 
 }
 

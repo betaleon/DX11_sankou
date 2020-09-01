@@ -10,6 +10,7 @@
 #include "player.h"
 #include "game.h"
 #include "title.h"
+#include "result.h"
 
 CScene* CManager::m_Scene = nullptr;
 
