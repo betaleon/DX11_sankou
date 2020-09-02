@@ -102,6 +102,12 @@
     <ClCompile Include="fade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="follower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tutorial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -195,6 +201,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="follower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tutorial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

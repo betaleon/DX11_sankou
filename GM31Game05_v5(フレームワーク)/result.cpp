@@ -20,9 +20,6 @@ typedef enum TextureIndexResult
 {
 	TEXTURE_RESULT_BACK,
 	TEXTURE_RESULT_PRESS,
-	TEXTURE_RESULT_A,
-	TEXTURE_RESULT_B,
-	TEXTURE_RESULT_C,
 
 	TEXTURE_INDEX_MAX
 
@@ -31,11 +28,8 @@ typedef enum TextureIndexResult
 // texture path
 TextureFile TextureFilesResult[] = {
 
-	{"asset/texture/result_back.png",	1920,  1080,0,0},
+	{"asset/texture/result_back2.png",	1920,  1080,0,0},
 	{"asset/texture/result_press.png",	1920,  1080,0,0},
-	{"asset/texture/result_A.png",	400,  400,0,0},
-	{"asset/texture/result_B.png",	400,  400,0,0},
-	{"asset/texture/result_C.png",	400,  400,0,0},
 
 };
 

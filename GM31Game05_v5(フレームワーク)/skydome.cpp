@@ -27,7 +27,7 @@ void CSkydome::Uninit()
 
 void CSkydome::Update()
 {
-
+	m_Rotation.y += 0.0001f;
 
 }
 

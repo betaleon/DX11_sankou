@@ -4,10 +4,10 @@
 #include "scene.h"
 #include "manager.h"
 
-#define SCORE_POS_X 500
-#define SCORE_POS_Y 600
-#define SCORE_WIDTH 100/5.0F
-#define SCORE_HEIGHT 50/2.0F
+#define SCORE_POS_X 430
+#define SCORE_POS_Y 575
+#define SCORE_WIDTH 200/5.0F
+#define SCORE_HEIGHT 100/2.0F
 
 void CScore::Init()
 {

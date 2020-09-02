@@ -17,7 +17,20 @@
 #include "explosion.h"
 #include "fade.h"
 
+typedef enum TextureIndexGame
+{
+	TEXTURE_GAME_FALLOWER,
 
+	TEXTURE_INDEX_MAX
+
+};
+// texture path
+TextureFile TextureFilesGame[] = {
+
+	{"asset/texture/Follower.png",	1024,  768,0,0},
+
+};
+class CPolygon* g_PolygonGame;
 void CGame::Init()
 {
 	CBullet::Load();
@@ -31,11 +44,17 @@ void CGame::Init()
 	AddGameObject<CPlayer>(1);
 
 	//AddGameObject<CPolygon>(2);
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 300; i++)
 	{
 		AddGameObject<CEnemy>(1)->SetPosition(D3DXVECTOR3(rand()%500-300.0f, 2.0f, rand()%500-300.0f));
 	}
 
+	g_PolygonGame = AddGameObject<CPolygon>(2);
+	g_PolygonGame->SetTexture(TextureFilesGame[TEXTURE_GAME_FALLOWER].filename,
+		TextureFilesGame[TEXTURE_GAME_FALLOWER].width,
+		TextureFilesGame[TEXTURE_GAME_FALLOWER].height,
+		TextureFilesGame[TEXTURE_GAME_FALLOWER].posx-400,
+		TextureFilesGame[TEXTURE_GAME_FALLOWER].posy);
 
 	AddGameObject<CScore>(2);
 	AddGameObject<CFade>(2);
@@ -54,8 +73,10 @@ void CGame::Update()
 {
 	CScene::Update();
 	CFade* pFade = GetGameObject<CFade>(2);
+	CScore* score = GetGameObject<CScore>(2);
 
-	if (CInput::GetKeyTrigger(VK_RETURN))
+	//if (CInput::GetKeyTrigger(VK_RETURN))
+	if (score->GetScore() >= 100.0f)
 	{
 		pFade->SetFadeOut();
 		//CManager::SetScene<CResult>();

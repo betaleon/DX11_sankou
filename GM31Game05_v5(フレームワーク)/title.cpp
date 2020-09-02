@@ -6,7 +6,7 @@
 #include "camera.h"
 #include "field.h"
 #include "skydome.h"
-#include "game.h"
+#include "tutorial.h"
 #include "polygon.h"
 #include "player.h"
 #include "fade.h"
@@ -79,7 +79,7 @@ void CTitle::Update()
 
 	if (pFade->GetSceneChangeFlg() == TRUE)
 	{
-		CManager::SetScene<CGame>();
+		CManager::SetScene<CTutorial>();
 	}
 	RadForTitle+=1.0f;
 	g_TitlePosX = sinf(D3DXToRadian(RadForTitle))*TITLE_HORSE_MOVE;

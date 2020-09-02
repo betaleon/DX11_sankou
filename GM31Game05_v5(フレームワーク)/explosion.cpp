@@ -5,6 +5,7 @@
 #include "manager.h"
 #include "camera.h"
 
+#define SIZE 5.0f
 void CExplosion::Init()
 {
 	VERTEX_3D vertex[4];
@@ -88,22 +89,22 @@ void CExplosion::Draw()
 
 	VERTEX_3D* vertex = (VERTEX_3D*)msr.pData;
 
-	vertex[0].Position = D3DXVECTOR3(-1.0f, 1.0f, 0.0f);
+	vertex[0].Position = D3DXVECTOR3(-SIZE, SIZE, 0.0f);
 	vertex[0].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[0].TexCoord = D3DXVECTOR2(x, y);			
 	
-	vertex[1].Position = D3DXVECTOR3(1.0f, 1.0f, 0.0f);
+	vertex[1].Position = D3DXVECTOR3(SIZE, SIZE, 0.0f);
 	vertex[1].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[1].TexCoord = D3DXVECTOR2(x + (1.0f / 4), y);
 	
-	vertex[2].Position = D3DXVECTOR3(-1.0f, -1.0f, 0.0f);
+	vertex[2].Position = D3DXVECTOR3(-SIZE, -SIZE, 0.0f);
 	vertex[2].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[2].TexCoord = D3DXVECTOR2(x, y + (1.0f / 4));
 	
-	vertex[3].Position = D3DXVECTOR3(1.0f, -1.0f, 0.0f);
+	vertex[3].Position = D3DXVECTOR3(SIZE, -SIZE, 0.0f);
 	vertex[3].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[3].TexCoord = D3DXVECTOR2(x + (1.0f / 4), y + (1.0f / 4));

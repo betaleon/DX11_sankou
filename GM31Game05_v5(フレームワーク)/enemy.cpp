@@ -14,6 +14,7 @@ void CEnemy::Init()
 	m_Rotation = D3DXVECTOR3(0.0f, rand()%360, 0.0f);
 	m_Scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 
+	m_Walkcount = 0;
 }
 
 void CEnemy::Uninit()
@@ -26,8 +27,13 @@ void CEnemy::Uninit()
 
 void CEnemy::Update()
 {
-	
+	int a = rand() % 240;
 
+	if(a == 120 )
+	m_Position.x += 1.0f;
+
+	if(a==0)
+	m_Position.x -= 1.0f;
 }
 
 void CEnemy::Draw()

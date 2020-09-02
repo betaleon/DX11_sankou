@@ -9,6 +9,7 @@ private:
 
 	class CModel* m_Model;
 	//前方宣言(ポインタ変数の有効)
+	int m_Walkcount;
 
 public:
 	CEnemy() {}

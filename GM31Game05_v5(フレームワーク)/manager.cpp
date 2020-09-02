@@ -64,18 +64,18 @@ void CManager::Draw()
 
 	m_Scene->Draw();
 	
-	ImGui::Begin("Debug");
-	
-	CPlayer* pPlayer = m_Scene->GetGameObject<CPlayer>(1);
-	if (pPlayer != NULL)
-	{
-		ImGui::Text("PlayerSize");
-		static float a = 1.0f;
-		pPlayer->SetScale(D3DXVECTOR3(a, a, a));
-		ImGui::SliderFloat("a", &a, 0.0f, 2.0f);
-	}
-	
-	ImGui::End();
+	//ImGui::Begin("Debug");
+	//
+	//CPlayer* pPlayer = m_Scene->GetGameObject<CPlayer>(1);
+	//if (pPlayer != NULL)
+	//{
+	//	ImGui::Text("PlayerSize");
+	//	static float a = 1.0f;
+	//	pPlayer->SetScale(D3DXVECTOR3(a, a, a));
+	//	ImGui::SliderFloat("a", &a, 0.0f, 2.0f);
+	//}
+	//
+	//ImGui::End();
 	
 
 	CDebugGui::End();

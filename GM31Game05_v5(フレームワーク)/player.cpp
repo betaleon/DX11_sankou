@@ -12,6 +12,8 @@
 #include "manager.h"
 #include "title.h"
 #include "enemy.h"
+#include "explosion.h"
+#include "follower.h"
 #include <typeinfo>
 #include <string.h>
 
@@ -20,7 +22,7 @@ void CPlayer ::Init()
 	m_Model = new CModel();
 	m_Model->Load("asset\\model\\horse_v5.obj");
 
-	m_Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_Position = D3DXVECTOR3(10.0f, 0.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 	D3DXQuaternionIdentity(&m_Quaternion);
@@ -105,8 +107,9 @@ void CPlayer::Update()
 
 			if (length < 3.0f)
 			{
-				//scene->AddGameObject<CPlayer>(1)->SetPosition(m_Position);
-				score->AddScore(100);
+				scene->AddGameObject<CExplosion>(1)->SetPosition(m_Position);
+				scene->AddGameObject<CFollower>(1)->SetPosition(m_Position);
+				score->AddScore(1);
 				enemy->SetDestroy();
 				//SetDestroy();
 				//return;

@@ -81,7 +81,7 @@ void CField::Init()
 			j++;											//j‚ÍƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ì¬‚³‚¢’l‚Ì‚Ù‚¤
 		}
 
-		if ((i + 1) % ((TILE_X + 1) * 2) == 0)	//k‘Þƒ|ƒŠƒSƒ“‚ÌŠi”[
+		if ((i + 1) % ((TILE_X + 1) * 2) == 0)				//k‘Þƒ|ƒŠƒSƒ“‚ÌŠi”[
 		{
 			pIdx[i + s + 1] = j-1;
 			pIdx[i + s + 2] = k;
@@ -116,7 +116,6 @@ void CField::Init()
 
 void CField::Uninit()
 {
-
 	m_VertexBuffer->Release();
 	m_Texture->Release();
 
